@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/dentonflake/bank/issues"
   },
-  "homepage": "https://github.com/dentonflake/bank#readme"
+  "homepage": "https://github.com/dentonflake/bank#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
 }
