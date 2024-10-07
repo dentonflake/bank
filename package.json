@@ -1,0 +1,19 @@
+{
+  "name": "bank",
+  "version": "1.0.0",
+  "description": "a multiplayer online version of the game \"bank!\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dentonflake/bank.git"
+  },
+  "author": "@dentonflake",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dentonflake/bank/issues"
+  },
+  "homepage": "https://github.com/dentonflake/bank#readme"
+}
