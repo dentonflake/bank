@@ -22,6 +22,9 @@ io.on('connection', (socket) => {
         })
 
         socket.emit('start', name)
+
+        console.clear()
+        console.log(players)
     })
 
     socket.on('disconnect', () => {
@@ -30,6 +33,9 @@ io.on('connection', (socket) => {
                 players.splice(i, 1)
             }
         }
+
+        console.clear()
+        console.log(players)
     })
 })
 
