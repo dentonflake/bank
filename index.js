@@ -33,8 +33,6 @@ io.on('connection', (socket) => {
     })
 })
 
-console.log("teda")
-
 const PORT = process.env.PORT
 server.listen(PORT, () => {
     console.clear();

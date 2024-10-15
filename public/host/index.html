@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bank!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Bank!</h1>
+    </header>
+
+    <main>
+        <div class="grid-container" id="create">
+            <div class="grid-item" id="welcome">
+                <h1>Welcome to Bank!</h1>
+            </div>
+            <div class="grid-item" id="name-input">
+                <input id="input" type="text" autocomplete="given-name" placeholder="Name">
+            </div>
+            <div class="grid-item" id="start" onclick="handleStart()">
+                <h1>Start</h1>
+            </div>
+        </div>
+
+        <div class="grid-container" id="player">
+            <div class="grid-item" id="market">
+                <h1>0</h1>
+            </div>
+            <div class="grid-item" id="name">
+                <h1></h1>
+            </div>
+            <div class="grid-item" id="rank">
+                <h1>-</h1>
+            </div>
+            <div class="grid-item" id="bank">
+                <h1>Bank: 0</h1>
+            </div>
+            <div class="grid-item" id="round">
+                <h1>Round: -</h1>
+            </div>
+            <div class="grid-item" id="roll">
+                <h1>Roll!</h1>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
