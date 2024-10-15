@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: "Permanent Marker", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    background-color: #2b303aff;
+}
+
+header {
+    padding: 20px 30px;
+    color: #eee5e9ff;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 100px;
+}
+
+.grid-container {
+    width: 100%;
+    max-width: 600px;
+
+    display: grid;
+
+    gap: 30px;
+}
+
+.grid-item {
+    background-color: #eee5e9ff;
+    border-radius: 20px;
+    padding: 20px;
+
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+}
+
+#create {
+    grid-template-areas:
+        'welcome welcome welcome '
+        'name name start';
+}
+
+#create #welcome {
+    grid-area: welcome;
+}
+
+#create #name-input {
+    grid-area: name;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#create #name-input input {
+    width: 100%;
+    font-size: 20px;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#create #start {
+    grid-area: start;
+
+    background-color: #d64933ff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#create #start:hover {
+    filter: brightness(80%);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#player {
+    display: none;
+
+    grid-template-areas:
+        'market market market market'
+        'name name name rank'
+        'bank bank round round'
+        '. roll roll .';
+}
+
+#player #market {
+    grid-area: market;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: gold;
+}
+
+#player #name {
+    grid-area: name;
+}
+
+#player #rank {
+    grid-area: rank;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#player #bank {
+    grid-area: bank;
+}
+
+#player #round {
+    grid-area: round;
+}
+
+#player #roll {
+    grid-area: roll;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(158, 129, 125);
+}
+
+@media only screen and (max-width: 800px) {
+    header {
+        padding: 20px;
+    }
+
+    main {
+        padding: 0px 20px;
+    }
+
+    .grid-container {
+        max-width: none;
+    }
+
+    #create {
+        grid-template-areas:
+            'welcome'
+            'name'
+            'start';
+    }
+
+    #create #welcome {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
