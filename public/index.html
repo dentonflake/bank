@@ -7,11 +7,154 @@
 
     <title>Bank!</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
     <script src="/socket.io/socket.io.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+            font-family: "Permanent Marker", cursive;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            background-color: #2b303aff;
+        }
+
+        header {
+            padding: 20px 30px;
+            color: #eee5e9ff;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 100px;
+        }
+
+        .grid-container {
+
+            width: 100%;
+            max-width: 600px;
+
+            display: grid;
+
+            gap: 30px;
+
+            grid-template-areas:
+                'welcome welcome welcome '
+                'name name start';
+        }
+
+        .grid-item {
+            background-color: #eee5e9ff;
+            border-radius: 20px;
+            padding: 20px;
+
+            box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        #welcome {
+            grid-area: welcome;
+        }
+
+        #name {
+            grid-area: name;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #name input {
+            width: 100%;
+            font-size: 20px;
+            border: none;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        #start {
+            grid-area: start;
+
+            background-color: #d64933ff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #start:hover {
+            filter: brightness(80%);
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        @media only screen and (max-width: 800px) {
+            header {
+                padding: 20px;
+            }
+
+            main {
+                padding: 0px 20px;
+            }
+
+            .grid-container {
+                max-width: none;
+
+                grid-template-columns: 1fr;
+
+                grid-template-areas:
+                    'welcome'
+                    'name'
+                    'start';
+            }
+
+            #welcome {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <script src="/script.js"></script>
+    <header>
+        <h1>Bank!</h1>
+    </header>
+
+    <main>
+        <div class="grid-container" id="create-profile">
+            <div class="grid-item" id="welcome">
+                <h1>Welcome to Bank!</h1>
+            </div>
+            <div class="grid-item" id="name">
+                <input type="text" autocomplete="given-name" placeholder="Name">
+            </div>
+            <div class="grid-item" id="start" onclick="handleStart()">
+                <h1>Start</h1>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize a connection to the server
+        const socket = io();
+
+        function handleStart() {
+            alert("test")
+        }
+    </script>
 </body>
 
 </html>
