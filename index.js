@@ -10,37 +10,42 @@ const io = new Server(server)
 
 app.use(express.static('public'))
 
-let players = []
+let users = {
+    admins: [],
+    players: []
+}
 
 io.on('connection', (socket) => {
-    socket.on('start', (name) => {
-        players.push({
+    socket.on('player', (name) => {
+        users.players.push({
             name: name,
             id: socket.id,
-            bank: 0,
-            rank: null
         })
+    })
 
-        socket.emit('start', name)
-
-        console.clear()
-        console.log(players)
+    socket.on('admin', () => {
+        users.admins.push({
+            id: socket.id
+        })
     })
 
     socket.on('disconnect', () => {
-        for (let i = 0; i < players.length; i++) {
-            if (players[i].id == socket.id) {
-                players.splice(i, 1)
+        for (let [index, player] of users.players) {
+            if (player.id == socket.id) {
+                users.players.splice(index, 1)
             }
         }
 
-        console.clear()
-        console.log(players)
+        for (let [index, admin] of users.admins) {
+            if (admin.id == socket.id) {
+                users.admins.splice(index, 1)
+            }
+        }
     })
 })
 
-const PORT = process.env.PORT
-server.listen(PORT, () => {
+
+server.listen(process.env.PORT, () => {
     console.clear();
     console.log(`Server is running on port ${PORT}`)
 })

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bank!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Bank!</h1>
+    </header>
+
+    <main>
+        <div class="grid-container" id="lobby">
+            <div class="grid-item title">
+                <h1>Waiting for players to join...</h1>
+            </div>
+            <div class="grid-item grid-container" id="players">
+                <div class="grid-item">
+                    <h1>Denton</h1>
+                </div>
+            </div>
+            <div class="grid-item" id="start" onclick="handleStart()">
+                <h1>Start</h1>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
