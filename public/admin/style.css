@@ -1,4 +1,6 @@
 #lobby {
+    display: none;
+
     grid-template-areas:
         'title start'
         'players players';
@@ -21,20 +23,60 @@
     background-color: #d64933ff;
 }
 
+#game {
+    /* display: none; */
+    grid-template-areas:
+        'standing'
+        'next'
+        'leaderboard';
+}
+
+#standing {
+    grid-area: standing;
+
+    grid-template-areas:
+        'round pot';
+
+    background-color: #D64933;
+}
+
+#round {
+    grid-area: round;
+}
+
+#pot {
+    grid-area: pot;
+}
+
+#turn {
+    grid-area: next;
+    background-color: #7C7C7C;
+
+    grid-template-areas:
+        'next name name name';
+}
+
+#name {
+    grid-area: name;
+}
+
+#leaderboard {
+    grid-area: leaderboard;
+
+
+
+    grid-template-areas:
+        'title';
+
+    background-color: #92DCE5;
+}
+
+#player {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media only screen and (max-width: 800px) {
-    header {
-        display: flex;
-        justify-content: center;
-    }
-
-    main {
-        padding: 0px 20px;
-    }
-
-    .grid-container {
-        max-width: none;
-    }
-
     #lobby {
         grid-template-areas:
             'title'
@@ -46,7 +88,15 @@
         grid-template-columns: 1fr;
     }
 
-    .title {
-        text-align: center;
+    #standing {
+        grid-template-areas:
+            'round'
+            'pot';
+    }
+
+    #turn {
+        grid-template-areas:
+            'next'
+            'name';
     }
 }

@@ -15,8 +15,12 @@
     background-color: #d64933ff;
 }
 
-#game {
+#wait {
     display: none;
+}
+
+#game {
+    /* display: none; */
 
     grid-template-columns: repeat(2, 1fr);
 
@@ -67,7 +71,7 @@
 
 #bank {
     grid-area: bank;
-    background-color: greenyellow;
+    background-color: gold;
 }
 
 #roll {
