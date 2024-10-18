@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bank!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/style.css">
+
+    <style>
+        #menu {
+            grid-template-areas:
+                'title title'
+                'join create';
+        }
+
+        #join {
+            grid-area: join;
+            background-color: #d64933ff;
+        }
+
+        #create {
+            grid-area: create;
+            background-color: rgb(15, 15, 15);
+            color: white;
+        }
+
+        @media only screen and (max-width: 800px) {
+            #menu {
+                grid-template-areas:
+                    'title'
+                    'join'
+                    'create';
+            }
+        }
+    </style>
+
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Bank!</h1>
+    </header>
+
+    <main>
+        <div class="grid-container" id="menu">
+            <div class="grid-item title">
+                <h1>Welcome to Bank!</h1>
+            </div>
+            <div class="grid-item button" id="join" onclick="handleJoin()">
+                <h1>Join!</h1>
+            </div>
+            <div class="grid-item button" id="create" onclick="handleCreate()">
+                <h1>Create Game</h1>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function handleJoin() {
+            window.location.href = '/client'
+        }
+
+        function handleCreate() {
+            window.location.href = '/admin'
+        }
+    </script>
+</body>
+
+</html>

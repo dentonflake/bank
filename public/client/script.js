@@ -6,9 +6,9 @@ function handleJoin() {
 
     if (name != "") {
 
-        document.getElementById("create").style.display = "none";
-        document.getElementById("player").style.display = "grid";
-        document.querySelector('#name h1').textContent = name;
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("game").style.display = "grid";
+        document.querySelector('#player h1').textContent = name;
 
         socket.emit('player', name);
     } else {

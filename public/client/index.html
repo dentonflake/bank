@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="../assets/style.css">
     <link rel="stylesheet" href="style.css">
 
     <script src="/socket.io/socket.io.js"></script>
@@ -22,36 +23,50 @@
     </header>
 
     <main>
-        <div class="grid-container" id="create">
-            <div class="grid-item" id="welcome">
-                <h1>Welcome to Bank!</h1>
+        <div class="grid-container" id="menu">
+            <div class="grid-item title">
+                <h1>Ready to play?</h1>
             </div>
-            <div class="grid-item" id="name-input">
-                <input id="input" type="text" autocomplete="given-name" placeholder="Name">
+            <div class="grid-item center" id="name">
+                <input class="input" id="input" type="text" autocomplete="given-name" placeholder="Name">
             </div>
-            <div class="grid-item" id="join" onclick="handleJoin()">
+            <div class="grid-item button center" id="join" onclick="handleJoin()">
                 <h1>Join!</h1>
             </div>
         </div>
 
-        <div class="grid-container" id="player">
-            <div class="grid-item" id="market">
-                <h1>0</h1>
+        <div class="grid-container" id="wait">
+            <div class="grid-item">
+                <h1>Waiting for the host to start the game...</h1>
             </div>
-            <div class="grid-item" id="name">
-                <h1></h1>
+        </div>
+
+        <div class="grid-container" id="game">
+            <div class="grid-container grid-item" id="standing">
+                <div class="grid-item center" id="round">
+                    <h1>Round: 4</h1>
+                </div>
+                <div class="grid-item center" id="pot">
+                    <h1>4234</h1>
+                </div>
             </div>
-            <div class="grid-item" id="rank">
-                <h1>-</h1>
+
+            <div class="grid-container grid-item" id="stats">
+                <div class="grid-item center" id="player">
+                    <h1>Denton</h1>
+                </div>
+                <div class="grid-item center" id="rank">
+                    <h1>1st</h1>
+                </div>
+                <div class="grid-item center" id="account">
+                    <h1>23</h1>
+                </div>
             </div>
-            <div class="grid-item" id="bank">
-                <h1>Bank: 0</h1>
+            <div class="grid-item button center" id="bank">
+                <h1>Bank!</h1>
             </div>
-            <div class="grid-item" id="round">
-                <h1>Round: -</h1>
-            </div>
-            <div class="grid-item" id="roll">
-                <h1>Roll!</h1>
+            <div class="grid-item center" id="roll">
+                <h1>Roll</h1>
             </div>
         </div>
     </main>

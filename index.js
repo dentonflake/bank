@@ -30,22 +30,11 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
-        for (let [index, player] of users.players) {
-            if (player.id == socket.id) {
-                users.players.splice(index, 1)
-            }
-        }
-
-        for (let [index, admin] of users.admins) {
-            if (admin.id == socket.id) {
-                users.admins.splice(index, 1)
-            }
-        }
     })
 })
 
 
 server.listen(process.env.PORT, () => {
     console.clear();
-    console.log(`Server is running on port ${PORT}`)
+    console.log(`Server is running on port ${process.env.PORT}`)
 })

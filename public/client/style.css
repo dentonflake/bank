@@ -1,137 +1,78 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
-    font-family: "Permanent Marker", cursive;
-    font-weight: 400;
-    font-style: normal;
-}
-
-body {
-    background-color: #2b303aff;
-}
-
-header {
-    padding: 20px 30px;
-    color: #eee5e9ff;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 100px;
-}
-
-.grid-container {
-    width: 100%;
-    max-width: 600px;
-
-    display: grid;
-
-    gap: 30px;
-}
-
-.grid-item {
-    background-color: #eee5e9ff;
-    border-radius: 20px;
-    padding: 20px;
-
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
-}
-
-#create {
-    grid-template-areas:
-        'welcome welcome welcome '
-        'name name start';
-}
-
-#create #welcome {
-    grid-area: welcome;
-}
-
-#create #name-input {
-    grid-area: name;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#create #name-input input {
-    width: 100%;
-    font-size: 20px;
-    border: none;
-    padding: 5px;
-    border-radius: 10px;
-}
-
-#create #join {
-    grid-area: start;
-
-    background-color: #d64933ff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#create #join:hover {
-    filter: brightness(80%);
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-#player {
+#menu {
     display: none;
 
     grid-template-areas:
-        'market market market market'
-        'name name name rank'
-        'bank bank round round'
-        '. roll roll .';
+        'title title title'
+        'name name start';
 }
 
-#player #market {
-    grid-area: market;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background-color: gold;
-}
-
-#player #name {
+#name {
     grid-area: name;
-    background-color: cyan;
 }
 
-#player #rank {
-    grid-area: rank;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#join {
+    grid-area: start;
+    background-color: #d64933ff;
 }
 
-#player #bank {
-    grid-area: bank;
+#game {
+    display: none;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-areas:
+        'standing standing'
+        'stats stats'
+        'bank roll';
 }
 
-#player #round {
+#standing {
+    grid-area: standing;
+
+    grid-template-areas:
+        'round pot';
+
+    background-color: #D64933;
+}
+
+#round {
     grid-area: round;
 }
 
-#player #roll {
-    grid-area: roll;
+#pot {
+    grid-area: pot;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(158, 129, 125);
+#stats {
+    grid-area: stats;
+
+    grid-template-areas:
+        'player rank'
+        'account account';
+
+    background-color: #92DCE5;
+}
+
+#player {
+    grid-area: player;
+}
+
+#rank {
+    grid-area: rank;
+}
+
+#account {
+    grid-area: account;
+}
+
+#bank {
+    grid-area: bank;
+    background-color: greenyellow;
+}
+
+#roll {
+    grid-area: roll;
+    background-color: #7C7C7C;
 }
 
 @media only screen and (max-width: 800px) {
@@ -143,20 +84,32 @@ main {
         padding: 0px 20px;
     }
 
-    .grid-container {
-        max-width: none;
-    }
-
-    #create {
+    #menu {
         grid-template-areas:
-            'welcome'
+            'title'
             'name'
             'start';
     }
 
-    #create #welcome {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    #game {
+        grid-template-columns: 1fr;
+
+        grid-template-areas:
+            'standing'
+            'stats'
+            'bank'
+            'roll';
+    }
+
+    #standing {
+        grid-template-areas:
+            'round'
+            'pot';
+    }
+
+    #stats {
+        grid-template-areas:
+            'player player'
+            'rank account';
     }
 }
