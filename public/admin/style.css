@@ -1,5 +1,5 @@
 #lobby {
-    display: none;
+    /* display: none; */
 
     grid-template-areas:
         'title start'
@@ -24,7 +24,7 @@
 }
 
 #game {
-    /* display: none; */
+    display: none;
     grid-template-areas:
         'standing'
         'next'
