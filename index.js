@@ -28,18 +28,30 @@ server.listen(port, () => {
 });
 
 // Game object
-const game = {
+let game = {
     active: false,
+    rounds: 0,
     clients: []
 }
 
 // Handle admin connections
 io.of('/admin').on('connection', (socket) => {
-    socket.emit('update', clients)
+    socket.emit('update', game.clients)
 
+    socket.on('start', () => {
+        game.active = true
+
+        socket.emit('start', game.active)
+        io.of('/client').emit('start')
+    })
 
     socket.on('disconnect', () => {
+        game = {
+            active: false,
+            clients: []
+        }
 
+        io.of('/client').emit('reset')
     })
 })
 
@@ -49,19 +61,26 @@ io.of('/client').on('connection', (socket) => {
         if (!game.active) {
             let client = {
                 name: name,
-                id: socket.id
+                id: socket.id,
+                rank: game.clients.length + 1,
+                points: 0
             }
 
             game.clients.push(client)
 
             socket.emit('join', client)
+            io.of('/admin').emit('update', game.clients);
         } else {
             socket.emit('reject', `Sorry ${name}, the game has already started!`)
         }
     })
 
     socket.on('disconnect', () => {
-        game.clients = game.clients.filter(client => client.id !== socket.id);
+        if (game.clients) {
+            game.clients = game.clients.filter(client => client.id !== socket.id);
+        }
+
+        io.of('/admin').emit('update', game.clients);
     })
 })
 

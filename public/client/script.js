@@ -25,3 +25,15 @@ socket.on('join', (data) => {
 socket.on('reject', (message) => {
     alert(message)
 })
+
+socket.on('reset', () => {
+    window.location.href = '/'
+})
+
+socket.on('start', () => {
+    document.getElementById("wait").style.display = "none";
+    document.getElementById("game").style.display = "grid";
+
+    document.querySelector("#player h1").textContent = client.name
+    document.querySelector("#rank h1").textContent = client.rank
+})
