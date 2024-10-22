@@ -1,13 +1,20 @@
-const socket = io('/admin');
+const socket = io('/host');
+
+socket.on('create', (code) => {
+    alert(code)
+})
+
+
 
 function handleStart() {
     socket.emit('start')
 }
 
-let game = {
-    active: false,
-    clients: []
-}
+
+
+
+
+
 
 socket.on('start', (active) => {
     game.active = active
@@ -15,8 +22,33 @@ socket.on('start', (active) => {
     document.getElementById("lobby").style.display = "none";
     document.getElementById("game").style.display = "grid";
 
+    updateTurn()
     updateLeaderboard()
 })
+
+function updateTurn() {
+    for (let client of game.clients) {
+        if (client.turn == game.turn) {
+            document.querySelector('#name h1').textContent = client.name
+        }
+    }
+
+    game.clients.forEach(client => {
+        let player = document.createElement('div')
+        player.className = 'grid-item'
+        player.id = 'player'
+
+        let name = document.createElement('h1')
+        name.textContent = `${client.rank}. ${client.name}`
+
+        let points = document.createElement('h1')
+        points.textContent = `${client.points}`
+
+        player.appendChild(name)
+        player.appendChild(points)
+        players.appendChild(player)
+    });
+}
 
 function updateLeaderboard() {
     let players = document.getElementById('leaderboard')
@@ -49,13 +81,13 @@ function updateLeaderboard() {
 }
 
 socket.on('update', (clients) => {
-    game.clients = clients
+    game = clients
 
     if (!game.active) {
         let players = document.getElementById('players')
         players.innerHTML = ''
 
-        clients.forEach(client => {
+        game.clients.forEach(client => {
             let player = document.createElement('div')
             player.className = 'grid-item center'
             player.id = client.id

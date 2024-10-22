@@ -3,8 +3,9 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 
-// Load environment variables from .env file
-require('dotenv').config();
+// Import custom modules
+const Game = require('./assets/game')
+const Player = require('./assets/player')
 
 // Initialize an Express application
 const app = express();
@@ -23,56 +24,65 @@ const port = 3000;
 
 // Start the server and listen on the specified port
 server.listen(port, () => {
-    console.clear(); // Clears the console on each server restart
+    console.clear();
     console.log(`Server is running on port ${port}`);
 });
 
 // Game object
-let game = {
-    active: false,
-    rounds: 0,
-    clients: []
-}
+let games = []
 
 // Handle admin connections
-io.of('/admin').on('connection', (socket) => {
-    socket.emit('update', game.clients)
+io.of('/host').on('connection', (socket) => {
+    games.push(
+        new Game(socket)
+    )
+
+
+
+
+
+    // socket.emit('update', game)
 
     socket.on('start', () => {
         game.active = true
 
-        socket.emit('start', game.active)
+        socket.emit('start', game)
         io.of('/client').emit('start')
+
+
     })
 
     socket.on('disconnect', () => {
-        game = {
-            active: false,
-            clients: []
+        if (games) {
+            games = games.filter(game => game.id !== socket.id);
         }
-
-        io.of('/client').emit('reset')
     })
 })
 
 // Handle client connections
 io.of('/client').on('connection', (socket) => {
     socket.on('join', (name) => {
-        if (!game.active) {
-            let client = {
-                name: name,
-                id: socket.id,
-                rank: game.clients.length + 1,
-                points: 0
+        if (game.host) {
+            if (!game.active) {
+
+                let client = new Player(
+                    name,
+                    socket.id
+                )
+
+                game.clients.push(client)
+
+                socket.emit('join')
+            } else {
+                socket.emit('reject', `Sorry ${name}, the game has already started!`)
             }
-
-            game.clients.push(client)
-
-            socket.emit('join', client)
-            io.of('/admin').emit('update', game.clients);
         } else {
-            socket.emit('reject', `Sorry ${name}, the game has already started!`)
+            socket.emit('reject', `Sorry ${name}, waiting for someone to host the game!`)
         }
+    })
+
+    socket.emit('update', (game) => {
+
     })
 
     socket.on('disconnect', () => {
@@ -80,8 +90,6 @@ io.of('/client').on('connection', (socket) => {
             game.clients = game.clients.filter(client => client.id !== socket.id);
         }
 
-        io.of('/admin').emit('update', game.clients);
+        io.of('/admin').emit('update', game);
     })
 })
-
-// io.of('/admin').emit('update', game.clients);

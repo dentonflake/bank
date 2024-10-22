@@ -3,11 +3,13 @@
 
     grid-template-areas:
         'title start'
+        'room room'
         'players players';
 }
 
-.title {
-    grid-area: title;
+#room {
+    grid-area: room;
+    background-color: #7C7C7C;
 }
 
 #players {
